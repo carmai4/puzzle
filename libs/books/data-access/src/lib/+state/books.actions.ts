@@ -6,12 +6,12 @@ export const searchBooks = createAction(
   props<{ term: string }>()
 );
 
-export const searchBooksSuccess = createAction(
+export const searchBooksCompleted = createAction(
   '[Book Search API] Search success',
   props<{ books: Book[] }>()
 );
 
-export const searchBooksFailure = createAction(
+export const searchBooksFailed = createAction(
   '[Book Search API] Search failure',
   props<{ error: any }>()
 );

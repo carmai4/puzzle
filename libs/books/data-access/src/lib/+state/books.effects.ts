@@ -13,8 +13,8 @@ export class BooksEffects {
       ofType(BooksActions.searchBooks),
       switchMap((action) =>
         this.http.get<Book[]>(`/api/books/search?q=${action.term}`).pipe(
-          map((data) => BooksActions.searchBooksSuccess({ books: data })),
-          catchError((error) => of(BooksActions.searchBooksFailure({ error })))
+          map((data) => BooksActions.searchBooksCompleted({ books: data })),
+          catchError((error) => of(BooksActions.searchBooksFailed({ error })))
         )
       )
     )

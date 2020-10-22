@@ -11,6 +11,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
+import { BooksGridComponent } from './book-search/books-grid/books-grid.component';
+import { BooksGridItemComponent } from './book-search/books-grid/books-grid-item/books-grid-item.component';
 
 const EXPORTS = [
   BookSearchComponent,
@@ -33,7 +35,7 @@ const EXPORTS = [
     ]),
     BooksDataAccessModule
   ],
-  exports: [...EXPORTS],
-  declarations: [...EXPORTS]
+  exports: [...EXPORTS, BooksGridComponent, BooksGridItemComponent],
+  declarations: [...EXPORTS, BooksGridComponent, BooksGridItemComponent]
 })
 export class BooksFeatureModule {}
