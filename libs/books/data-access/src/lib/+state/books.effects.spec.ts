@@ -34,7 +34,7 @@ describe('BooksEffects', () => {
 
       effects.searchBooks$.subscribe(action => {
         expect(action).toEqual(
-          BooksActions.searchBooksCompleted({ books: [createBook('A')] })
+          BooksActions.searchBooksSucceeded({ books: [createBook('A')] })
         );
         done();
       });

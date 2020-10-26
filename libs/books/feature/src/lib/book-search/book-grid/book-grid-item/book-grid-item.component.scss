@@ -1,5 +1,13 @@
 @import 'variables.scss';
 
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+  padding: $spacing-xxs;
+  background-color: $gray20;
+}
+
 .book--title {
   font-weight: 500;
   color: $gray80;
@@ -19,7 +27,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
+  font-size: 0.8rem;
 
   > div {
     margin-bottom: $spacing-xxs;

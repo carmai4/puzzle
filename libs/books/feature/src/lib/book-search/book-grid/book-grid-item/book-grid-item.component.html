@@ -3,12 +3,12 @@
 </div>
 <div class="book--content">
   <div class="book--content--cover">
-    <img src="{{ book.coverUrl }}" alt="{{ 'cover of ' + book.title}}" />
+    <img src="{{ book.coverUrl }}" />
   </div>
   <div class="book--content--info">
-    <div><strong>Author:</strong> {{ book.authors.join(',') }}</div>
-    <div><strong>Publisher:</strong> {{ book.publisher }}</div>
-    <div>
+    <div test-id="author"><strong>Author:</strong> {{ book.authors.join(',') }}</div>
+    <div test-id="publisher"><strong>Publisher:</strong> {{ book.publisher }}</div>
+    <div test-id="published">
       <strong>Published:</strong> {{ book.publishedDate | date:"MM/dd/yy" }}
     </div>
     <p [innerHTML]="book.description"></p>

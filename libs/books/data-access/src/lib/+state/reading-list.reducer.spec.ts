@@ -24,7 +24,7 @@ describe('Books Reducer', () => {
         createReadingListItem('B'),
         createReadingListItem('C')
       ];
-      const action = ReadingListActions.loadReadingListCompleted({ list });
+      const action = ReadingListActions.loadReadingListSucceeded({ list });
 
       const result: State = reducer(initialState, action);
 

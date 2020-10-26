@@ -11,13 +11,15 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
-import { BooksGridComponent } from './book-search/books-grid/books-grid.component';
-import { BooksGridItemComponent } from './book-search/books-grid/books-grid-item/books-grid-item.component';
+import { BookGridComponent } from './book-search/book-grid/book-grid.component';
+import { BookGridItemComponent } from './book-search/book-grid/book-grid-item/book-grid-item.component';
 
 const EXPORTS = [
   BookSearchComponent,
   TotalCountComponent,
-  ReadingListComponent
+  ReadingListComponent,
+  BookGridComponent,
+  BookGridItemComponent
 ];
 
 @NgModule({
@@ -35,7 +37,7 @@ const EXPORTS = [
     ]),
     BooksDataAccessModule
   ],
-  exports: [...EXPORTS, BooksGridComponent, BooksGridItemComponent],
-  declarations: [...EXPORTS, BooksGridComponent, BooksGridItemComponent]
+  exports: [...EXPORTS],
+  declarations: [...EXPORTS]
 })
 export class BooksFeatureModule {}

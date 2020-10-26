@@ -35,7 +35,7 @@ const readingListReducer = createReducer(
       error: null
     };
   }),
-  on(ReadingListActions.loadReadingListCompleted, (state, action) => {
+  on(ReadingListActions.loadReadingListSucceeded, (state, action) => {
     return readingListAdapter.setAll(action.list, {
       ...state,
       loaded: true

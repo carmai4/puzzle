@@ -18,16 +18,8 @@
 #### Contrast
 - background and foreground colors do not have a sufficient contrast ratio   
 ### My Manual Check Using Chrome
-- font size and icons may be too small in some places, especially in My Reading List and book grid  
 - book grid images do not have alt text
 - book grid background color not enough contrast with white background  
 - book search field has no label and aria-label
 - book search icon has no aria-label
 - delete icons in Reading List has no aria-label  
-
-## Changes Made
-- new components books-grid and books-grid-item
-- use date pipe instead of custom function
-- action names updated to be consistent
-- all accessibility issues above fixed - Lighthouse scan score is now 100
-- tests fixed

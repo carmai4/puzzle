@@ -30,7 +30,7 @@ const booksReducer = createReducer(
     loaded: false,
     error: null
   })),
-  on(BooksActions.searchBooksCompleted, (state, action) =>
+  on(BooksActions.searchBooksSucceeded, (state, action) =>
     booksAdapter.setAll(action.books, {
       ...state,
       loaded: true

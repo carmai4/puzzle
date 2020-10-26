@@ -6,7 +6,7 @@ export const searchBooks = createAction(
   props<{ term: string }>()
 );
 
-export const searchBooksCompleted = createAction(
+export const searchBooksSucceeded = createAction(
   '[Book Search API] Search success',
   props<{ books: Book[] }>()
 );
