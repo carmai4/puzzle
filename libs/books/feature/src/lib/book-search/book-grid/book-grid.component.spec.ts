@@ -1,22 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedTestingModule } from '@tmo/shared/testing';
 import { BookGridComponent } from './book-grid.component';
-import { BooksFeatureModule } from '../../books-feature.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BookGridComponent', () => {
   let component: BookGridComponent;
   let fixture: ComponentFixture<BookGridComponent>;
   const books = [{
-    id: `${Date.now()}a`,
-    title: `Some Title ${Math.floor(Math.random() * 9999)}a`,
-    authors: ['a', 'b', 'c'],
+    id: 'asdfjkl',
+    title: 'Harry Potter and the Order of the Phoenix',
+    authors: ['J.K. Rowling'],
+    publisher: 'ASDF',
+    publishedDate: '01/01/2000',
     description: 'n/a',
     isAdded: false
   },
   {
-    id: `${Date.now()}b`,
-    title: `Some Title ${Math.floor(Math.random() * 9999)}b`,
-    authors: ['a', 'b', 'c'],
+    id: 'qwerty',
+    title: 'Gone with the Wind',
+    authors: ['Margaret Mitchell'],
+    publisher: 'ASDF',
+    publishedDate: '10/24/1950',
     description: 'n/a',
     isAdded: false
   }
@@ -24,10 +27,10 @@ describe('BookGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BooksFeatureModule, SharedTestingModule]
+      declarations: [BookGridComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
-
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BookGridComponent);
@@ -40,16 +43,9 @@ describe('BookGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('shall render books as expected', () => {
-    const componentBooks = fixture.debugElement.componentInstance.books;
+  it('shall render correct number of books', () => {
     const elem = fixture.debugElement.nativeElement;
-    const bookItemSelector = 'tmo-book-grid-item';
-
-    expect(componentBooks.length).toEqual(books.length);
-    books.forEach((b, i) => {
-      expect(b === componentBooks[i]).toBe(true);
-    });
-    const bookCount = elem.querySelectorAll(bookItemSelector).length;
-    expect(bookCount).toEqual(componentBooks.length);
+    const bookCount = elem.querySelectorAll('tmo-book-grid-item').length;
+    expect(bookCount).toEqual(component.books.length);
   });
 });

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getAllBooks,
@@ -12,7 +12,7 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.scss']
 })
-export class BookSearchComponent implements OnInit {
+export class BookSearchComponent {
   books$ = this.store.select(getAllBooks);
 
   searchForm = this.fb.group({
@@ -26,9 +26,6 @@ export class BookSearchComponent implements OnInit {
 
   get searchTerm(): string {
     return this.searchForm.value.term;
-  }
-
-  ngOnInit(): void {
   }
 
   searchExample() {

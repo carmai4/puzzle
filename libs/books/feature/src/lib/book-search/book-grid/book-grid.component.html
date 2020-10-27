@@ -1,3 +1,10 @@
 <ng-container *ngIf="books?.length">
   <tmo-book-grid-item data-testing="book-item" *ngFor="let b of books" [book]=b></tmo-book-grid-item>
 </ng-container>
+<ng-template #empty>
+  <div class="empty">
+    <p>
+      No results found for the search term.
+    </p>
+  </div>
+</ng-template>

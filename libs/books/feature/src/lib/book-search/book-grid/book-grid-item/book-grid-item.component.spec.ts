@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedTestingModule } from '@tmo/shared/testing';
-import { BooksFeatureModule } from '../../../books-feature.module';
+import { provideMockStore } from '@ngrx/store/testing';
 import { BookGridItemComponent } from './book-grid-item.component';
 
 describe('BookGridItemComponent', () => {
   let component: BookGridItemComponent;
   let fixture: ComponentFixture<BookGridItemComponent>;
   const book = {
-      id: `${Date.now()}b`,
-      title: `Some Title ${Math.floor(Math.random() * 9999)}b`,
-      authors: ['a', 'b', 'c'],
+      id: 'asdfjkl',
+      title: 'A Thousand Splendid Suns',
+      authors: ['Khaled Hosseini'],
       publisher: 'Some Publisher',
-      publishedDate: new Date().toDateString(),
-      description: 'n/a',
+      publishedDate: '10/01/1988',
+      description: 'A breathtaking story set against the volatile events of Afghanistan\'s last thirty years',
       isAdded: false
     };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BooksFeatureModule, SharedTestingModule]
+      providers: [provideMockStore({})],
+      declarations: [BookGridItemComponent]
     }).compileComponents();
   }));
 
@@ -34,13 +34,12 @@ describe('BookGridItemComponent', () => {
   });
 
   it('shall render book as expected', () => {
-    const componentBook = fixture.debugElement.componentInstance.book;
     const elem = fixture.debugElement.nativeElement;
-    expect(componentBook === book).toBe(true);
-    expect(elem.querySelector('.book--title').textContent.trim()).toEqual(book.title);
-    expect(elem.querySelector('[test-id=author]').textContent.trim()).toEqual(`Author: ${book.authors.join(',')}`);
-    expect(elem.querySelector('[test-id=publisher]').textContent.trim()).toEqual(`Publisher: ${book.publisher}`);
-    const publishedDateString = new Date(book.publishedDate).toLocaleDateString().substr(0, 8);
-    expect(elem.querySelector('[test-id=published]').textContent.trim()).toEqual(`Published: ${publishedDateString}`);
+    expect(elem.querySelector('.book--title').textContent.trim()).toEqual('A Thousand Splendid Suns');
+    expect(elem.querySelector('[test-id=author]').textContent.trim()).toEqual('Author: Khaled Hosseini');
+    expect(elem.querySelector('[test-id=publisher]').textContent.trim()).toEqual('Publisher: Some Publisher');
+    expect(elem.querySelector('[test-id=published]').textContent.trim()).toEqual('Published: 10/01/88');
+    expect(elem.querySelector('[test-id=description]').innerHTML.trim())
+      .toEqual('A breathtaking story set against the volatile events of Afghanistan\'s last thirty years');
   });
 });

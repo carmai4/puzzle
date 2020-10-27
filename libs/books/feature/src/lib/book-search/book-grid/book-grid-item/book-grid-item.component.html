@@ -11,7 +11,7 @@
     <div test-id="published">
       <strong>Published:</strong> {{ book.publishedDate | date:"MM/dd/yy" }}
     </div>
-    <p [innerHTML]="book.description"></p>
+    <p test-id="description" [innerHTML]="book.description"></p>
     <div>
       <button
         mat-flat-button

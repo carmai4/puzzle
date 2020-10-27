@@ -9,9 +9,6 @@ import {
   styleUrls: ['./book-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookGridComponent {
-
-  constructor() {}
-  
+export class BookGridComponent {  
   @Input() books: ReadingListBook[];
 }
