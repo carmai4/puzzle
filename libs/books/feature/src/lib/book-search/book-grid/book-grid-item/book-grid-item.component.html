@@ -1,0 +1,27 @@
+<div class="book--title">
+  {{ book.title }}
+</div>
+<div class="book--content">
+  <div class="book--content--cover">
+    <img src="{{ book.coverUrl }}" />
+  </div>
+  <div class="book--content--info">
+    <div test-id="author"><strong>Author:</strong> {{ book.authors.join(',') }}</div>
+    <div test-id="publisher"><strong>Publisher:</strong> {{ book.publisher }}</div>
+    <div test-id="published">
+      <strong>Published:</strong> {{ book.publishedDate | date:"MM/dd/yy" }}
+    </div>
+    <p test-id="description" [innerHTML]="book.description"></p>
+    <div>
+      <button
+        mat-flat-button
+        color="primary"
+        [attr.aria-label]="'Add ' + book.title + ' to reading list'"
+        (click)="addBookToReadingList(book)"
+        [disabled]="book.isAdded"
+      >
+        Want to Read
+      </button>
+    </div>
+  </div>
+</div>
