@@ -13,6 +13,7 @@ import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
 import { BookGridComponent } from './book-search/book-grid/book-grid.component';
 import { BookGridItemComponent } from './book-search/book-grid/book-grid-item/book-grid-item.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 const EXPORTS = [
   BookSearchComponent,
@@ -38,6 +39,6 @@ const EXPORTS = [
     BooksDataAccessModule
   ],
   exports: [...EXPORTS],
-  declarations: [...EXPORTS]
+  declarations: [...EXPORTS, SnackBarComponent]
 })
 export class BooksFeatureModule {}
