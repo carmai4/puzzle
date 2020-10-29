@@ -20,4 +20,14 @@ export class ReadingListController {
   async removeFromReadingList(@Param() params) {
     return await this.readingList.removeBook(params.id);
   }
+
+  @Post('/reading-list/:id/finished')
+  async markBookFinished(@Body() body) {
+    return await this.readingList.markBookFinished(body);
+  }
+
+  @Delete('/reading-list/:id/finished')
+  async markBookNotFinished(@Param() params) {
+    return await this.readingList.markBookNotFinished(params.id);
+  }
 }

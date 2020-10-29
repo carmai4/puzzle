@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getReadingList } from '@tmo/books/data-access';
 import { BookGridItemComponent } from './book-grid-item.component';
 
 describe('BookGridItemComponent', () => {
@@ -17,7 +18,33 @@ describe('BookGridItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [provideMockStore({})],
+      providers: [provideMockStore({
+        selectors: [
+          {
+            selector: getReadingList,
+            value: [
+              {
+                bookId: 'asdfjkl',
+                title: 'A Thousand Splendid Suns',
+                authors: ['Khaled Hosseini'],
+                publisher: 'Some Publisher',
+                publishedDate: '10/01/88',
+                description: 'A breathtaking story set against the volatile events of Afghanistan\'s last thirty years',
+                isAdded: false
+              },
+              {
+                bookId: 'poiuytre',
+                title: 'A Thousand Splendid Suns II',
+                authors: ['Khaled Hosseini'],
+                publisher: 'Some Publisher',
+                publishedDate: '10/01/98',
+                description: 'A breathtaking story set against the volatile events of Afghanistan\'s last thirty years',
+                isAdded: false
+              }
+            ]
+          }
+        ]
+      })],
       declarations: [BookGridItemComponent]
     }).compileComponents();
   }));
