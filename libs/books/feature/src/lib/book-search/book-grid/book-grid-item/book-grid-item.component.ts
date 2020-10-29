@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
-  addToReadingList, ReadingListBook
+  addToReadingList, ReadingListBook, undoAddToReadingList
 } from '@tmo/books/data-access';
 import { Book } from '@tmo/shared/models';
 import { SnackBarService } from '../../../snack-bar/snack-bar.service';
@@ -15,9 +15,7 @@ import { SnackBarService } from '../../../snack-bar/snack-bar.service';
 
 export class BookGridItemComponent {
 
-  @Input() book: ReadingListBook;
-  
-  snackbardata = "Hello World";
+  @Input() book: ReadingListBook;  
 
   constructor(
     private readonly store: Store,
@@ -28,7 +26,20 @@ export class BookGridItemComponent {
     this.store.dispatch(addToReadingList({ book }));
   }
 
-  showSnackBar() {
-    this.snackBarService.openSnackBar('hello from book-grid-item!!!!', null);
+  undoAddBookToReadingList(book:Book) {
+    const { id, ...rest } = book;
+    const item = {
+      bookId: book.id,
+      ...rest
+    };
+    this.store.dispatch(undoAddToReadingList({ item }));
+  }
+
+  showSnackBar(book: Book) {
+    this.snackBarService.openSnackBar({
+      snackBarText: 'Added to reading list',
+      actionText: 'Undo',
+      action: () => this.undoAddBookToReadingList(book)
+    });
   }
 }

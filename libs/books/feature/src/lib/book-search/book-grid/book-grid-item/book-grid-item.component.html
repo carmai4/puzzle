@@ -14,10 +14,11 @@
     <p test-id="description" [innerHTML]="book.description"></p>
     <div>
       <button
+        test-id="add-to-reading-list"
         mat-flat-button
         color="primary"
         [attr.aria-label]="'Add ' + book.title + ' to reading list'"
-        (click)="addBookToReadingList(book);showSnackBar()"
+        (click)="addBookToReadingList(book);showSnackBar(book)"
         [disabled]="book.isAdded"
       >
         Want to Read

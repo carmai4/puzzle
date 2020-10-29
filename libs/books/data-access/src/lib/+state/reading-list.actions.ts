@@ -7,6 +7,7 @@ export const loadReadingListSucceeded = createAction(
   '[Reading List API] Load list success',
   props<{ list: ReadingListItem[] }>()
 );
+
 export const loadReadingListFailed = createAction(
   '[Reading List API] Load list error',
   props<{ error: string }>()
@@ -27,6 +28,11 @@ export const addToReadingListSucceeded = createAction(
   props<{ book: Book }>()
 );
 
+export const undoAddToReadingList = createAction(
+  '[Books Search Results] Undo add to list',
+  props<{ item: ReadingListItem }>()
+)
+
 export const removeFromReadingList = createAction(
   '[Books Search Results] Remove from list',
   props<{ item: ReadingListItem }>()
@@ -40,4 +46,9 @@ export const removeFromReadingListFailed = createAction(
 export const removeFromReadingListSucceeded = createAction(
   '[Reading List API] Confirmed remove from list',
   props<{ item: ReadingListItem }>()
+);
+
+export const undoRemoveFromReadingList = createAction(
+  '[Books Search Results] Undo remove from list',
+  props<{ book: Book }>()
 );

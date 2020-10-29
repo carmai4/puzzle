@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { SnackBarService } from '../../../snack-bar/snack-bar.service';
 import { BookGridItemComponent } from './book-grid-item.component';
 
 describe('BookGridItemComponent', () => {
   let component: BookGridItemComponent;
   let fixture: ComponentFixture<BookGridItemComponent>;
+  let snackBarServiceStub: Partial<SnackBarService>;
   const book = {
       id: 'asdfjkl',
       title: 'A Thousand Splendid Suns',
@@ -16,8 +18,9 @@ describe('BookGridItemComponent', () => {
     };
 
   beforeEach(async(() => {
+    snackBarServiceStub = {};
     TestBed.configureTestingModule({
-      providers: [provideMockStore({})],
+      providers: [provideMockStore({}), { provide: SnackBarService, useValue: snackBarServiceStub }],
       declarations: [BookGridItemComponent]
     }).compileComponents();
   }));

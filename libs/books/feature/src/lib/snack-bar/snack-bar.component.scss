@@ -1,0 +1,24 @@
+@import 'variables.scss';
+
+div.snack-bar-header {
+  text-align: right;
+  margin-top: -$spacing-xs;
+  margin-right: -$spacing-xs;
+
+  button.dismiss .mat-icon {
+    font-size: $spacing-xs;
+  }
+}
+
+div.snack-bar-body {
+  text-align: center;
+}
+
+button.mat-flat-button.action {
+  margin-left: $spacing-xs;
+
+  &:disabled {
+    background-color: $gray70;
+    color: $gray30;
+  }
+}

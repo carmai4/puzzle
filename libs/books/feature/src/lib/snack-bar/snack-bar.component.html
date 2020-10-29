@@ -1,8 +1,23 @@
-<div>
-  <div>{{data}}</div>
-  <div class="dismiss">
-    <button mat-icon-button (click)="snackBarRef.dismiss()">
-        <mat-icon>Dismiss</mat-icon>
-      </button>
-  </div>
+<div class="snack-bar-header">
+  <button
+    mat-icon-button
+    class="dismiss"
+    (click)="snackBarRef.dismiss()"
+  >
+    <mat-icon>cancel</mat-icon>
+  </button>
+</div>
+<div class="snack-bar-body">
+  <span class="snack-bar-text">{{ data.snackBarText }}</span>
+  <button
+    id="snack-bar-button"
+    test-id="action"
+    mat-flat-button
+    class="action"
+    color="warn"
+    (click)="data.action();clicked=true"
+    [disabled]="clicked"
+  >
+    {{ data.actionText }}
+  </button>
 </div>

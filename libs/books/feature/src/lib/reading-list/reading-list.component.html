@@ -12,9 +12,10 @@
     <div>
       <button
         mat-icon-button
+        test-id="remove-from-reading-list"
         color="warn"
         [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
-        (click)="removeFromReadingList(b)"
+        (click)="removeFromReadingList(b);showSnackBar(b)"
       >
         <mat-icon>remove_circle</mat-icon>
       </button>

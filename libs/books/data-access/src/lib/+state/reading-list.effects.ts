@@ -38,6 +38,22 @@ export class ReadingListEffects implements OnInitEffects {
     )
   );
 
+  undoAddBook$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReadingListActions.removeFromReadingList),
+      concatMap(({ item }) =>
+        this.http.delete(`/api/reading-list/${item.bookId}`).pipe(
+          map(() =>
+            ReadingListActions.removeFromReadingListSucceeded({ item })
+          ),
+          catchError(() =>
+            of(ReadingListActions.removeFromReadingListFailed({ item }))
+          )
+        )
+      )
+    )
+  );
+
   removeBook$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ReadingListActions.removeFromReadingList),
@@ -48,6 +64,20 @@ export class ReadingListEffects implements OnInitEffects {
           ),
           catchError(() =>
             of(ReadingListActions.removeFromReadingListFailed({ item }))
+          )
+        )
+      )
+    )
+  );
+
+  undoRemoveBook$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReadingListActions.addToReadingList),
+      concatMap(({ book }) =>
+        this.http.post('/api/reading-list', book).pipe(
+          map(() => ReadingListActions.addToReadingListSucceeded({ book })),
+          catchError(() =>
+            of(ReadingListActions.addToReadingListFailed({ book }))
           )
         )
       )
