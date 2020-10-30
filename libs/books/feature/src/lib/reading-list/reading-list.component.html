@@ -30,7 +30,7 @@
     <div>
       <img class="reading-list-item--cover" [src]="b.coverUrl" />
     </div>
-    <div class="reading-list-item--details" [ngClass]="{'finished': b.finished}">
+    <div class="reading-list-item--details" [ngClass]="{'finished-details': b.finished}">
       <strong class="reading-list-item--details--title">{{ b.title }}</strong>
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
