@@ -37,13 +37,4 @@ export class ReadingListService {
       return list;
     });
   }
-
-  async markBookNotFinished(id: string): Promise<void> {
-    const index = this.storage.read().findIndex(book => book.bookId === id);
-    this.storage.update(list => {
-      list[index].finished = false;
-      list[index].finishedDate = undefined;
-      return list;
-    });
-  }
 }

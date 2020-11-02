@@ -20,8 +20,7 @@
         (click)="addBookToReadingList(book)"
         [disabled]="book.isAdded"
       >
-        <div *ngIf="isFinished; else notFinished">Finished</div>
-        <ng-template #notFinished>Want to Read</ng-template>
+        {{ isFinished ? 'Finished' : 'Want to Read'}}
       </button>
     </div>
   </div>

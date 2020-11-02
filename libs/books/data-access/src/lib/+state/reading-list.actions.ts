@@ -57,11 +57,6 @@ export const markBookFinishedFailed = createAction(
   props<{ item: ReadingListItem }>()
 );
 
-export const markBookNotFinished = createAction(
-  '[Reading List API] Mark book not finished on list',
-  props<{ item: ReadingListItem }>()
-);
-
 export const markBookNotFinishedSucceeded = createAction(
   '[Reading List API] Confirmed mark book not finished on list',
   props<{ item: ReadingListItem }>()

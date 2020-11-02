@@ -25,9 +25,4 @@ export class ReadingListController {
   async markBookFinished(@Body() body) {
     return await this.readingList.markBookFinished(body);
   }
-
-  @Delete('/reading-list/:id/finished')
-  async markBookNotFinished(@Param() params) {
-    return await this.readingList.markBookNotFinished(params.id);
-  }
 }

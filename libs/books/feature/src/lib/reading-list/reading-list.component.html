@@ -5,7 +5,6 @@
         mat-icon-button
         color="primary"
         [attr.aria-label]="'Mark ' + b.title + ' not yet finished'"
-        (click)="markBookNotFinished(b)"
       >
         <mat-icon
           matTooltip="You finished this book on {{ b.finishedDate | date:'MM/dd/yy' }}. Click to mark it as not finished.">

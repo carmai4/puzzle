@@ -68,16 +68,6 @@ const readingListReducer = createReducer(
       }
     }
     return readingListAdapter.updateOne(item, state);
-  }),
-  on(ReadingListActions.markBookNotFinished, (state, action) => {
-    const item: Update<ReadingListItem> = {
-      id: action.item.bookId,
-      changes: {
-        finished: false,
-        finishedDate: undefined
-      }
-    }
-    return readingListAdapter.updateOne(item, state);
   })
 );
 
