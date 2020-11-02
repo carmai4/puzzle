@@ -18,7 +18,7 @@
         mat-flat-button
         color="primary"
         [attr.aria-label]="'Add ' + book.title + ' to reading list'"
-        (click)="addBookToReadingList(book);showSnackBar(book)"
+        (click)="addBookToReadingList(book)"
         [disabled]="book.isAdded"
       >
         Want to Read

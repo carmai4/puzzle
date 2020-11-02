@@ -39,31 +39,23 @@ describe('When: I use the reading list feature', () => {
         'My Reading List'
       )
     );
-    const itemsBeforeUndo = await $$('.reading-list-item');
+    const itemsBefore = await $$('.reading-list-item');
     const closeReadingList = await $('h2 button.mat-icon-button');
     await closeReadingList.click();
 
     // add new book
-    const addButton = await $('button[test-id="add-to-reading-list"][ng-reflect-disabled="false"]');
+    const addButton = await $$('button[test-id="add-to-reading-list"][ng-reflect-disabled="false"]').first();
     await addButton.click();
     
     // to be able to locate snackbar element
     // otherwise, protractor stops to wait for snackbar to time out and disappear
     await browser.waitForAngularEnabled(false);
 
-    const undoAddButton = await $('#snack-bar-button');
+    const undoAddButton = $('simple-snack-bar button');
     // click undoAddButton
     await undoAddButton.click();
 
-    const readingListToggle2 = $('[data-testing="toggle-reading-list"]');
-
-    // reading list after undo
-    await browser.wait(
-      ExpectedConditions.presenceOf(
-        readingListToggle2
-      )
-    );
-    await readingListToggle2.click();
+    await readingListToggle.click();
     await browser.wait(
       ExpectedConditions.textToBePresentInElement(
         $('[data-testing="reading-list-container"]'),
@@ -73,8 +65,8 @@ describe('When: I use the reading list feature', () => {
 
     // check that the number of reading list items did not change
     // after adding a book then clicking undo
-    const itemsAfterUndo = await $$('.reading-list-item');
-    expect(itemsAfterUndo.length).toEqual(itemsBeforeUndo.length);
+    const itemsAfter = await $$('.reading-list-item');
+    expect(itemsAfter.length).toEqual(itemsBefore.length);
   });
 
   it('Then: I shall be able to undo removing a book from the reading list', async () => {
@@ -97,27 +89,23 @@ describe('When: I use the reading list feature', () => {
     const itemsBefore = await $$('.reading-list-item');
 
     // remove a book
-    const removeButton = await $('button[test-id="remove-from-reading-list"]');
+    const removeButton = $$('button[test-id="remove-from-reading-list"]').first();
     await removeButton.click();
 
     // to be able to locate snackbar element
     // otherwise, protractor stops to wait for snackbar to time out and disappear
     await browser.waitForAngularEnabled(false);
 
-    const undoRemoveButton = await $('#snack-bar-button');
+    const undoRemoveButton = $('simple-snack-bar button');
     // click undo
     await undoRemoveButton.click();
-
-    await browser.wait(
-      ExpectedConditions.textToBePresentInElement(
-        $('[data-testing="reading-list-container"]'),
-        'My Reading List'
-      )
-    );
 
     // check that the number of reading list items did not change
     // after removing a book then clicking undo
     const itemsAfter = await $$('.reading-list-item');
     expect(itemsAfter.length).toEqual(itemsBefore.length);
+
+    // set it back to default
+    await browser.waitForAngularEnabled(true);
   });
 });
