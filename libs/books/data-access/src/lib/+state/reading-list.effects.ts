@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReadingListItem } from '@tmo/shared/models';
 import * as ReadingListActions from './reading-list.actions';
 import { Store } from '@ngrx/store';
-import { _runtimeChecksFactory } from '@ngrx/store/src/runtime_checks';
 
 @Injectable()
 export class ReadingListEffects implements OnInitEffects {
@@ -50,11 +49,8 @@ export class ReadingListEffects implements OnInitEffects {
           bookId: book.id,
           ...rest
         };
-        this._showSnackBar(
-          'Added to reading list',
-          'Undo',
-          () => this.store.dispatch(ReadingListActions.undoAddToReadingList({ item }))
-        );
+        const action = () => this.store.dispatch(ReadingListActions.undoAddToReadingList({ item }));
+        this._showSnackBar('Added to reading list', 'Undo', action);
       })
     )
   }, { dispatch: false });
@@ -64,9 +60,7 @@ export class ReadingListEffects implements OnInitEffects {
       ofType(ReadingListActions.undoAddToReadingList),
       concatMap(({ item }) =>
         this.http.delete(`/api/reading-list/${item.bookId}`).pipe(
-          map(() =>
-            ReadingListActions.removeFromReadingListSucceeded({ item })
-          ),
+          map(() => ReadingListActions.removeFromReadingListSucceeded({ item })),
           catchError(() =>
             of(ReadingListActions.removeFromReadingListFailed({ item }))
           )
@@ -80,9 +74,9 @@ export class ReadingListEffects implements OnInitEffects {
       ofType(ReadingListActions.removeFromReadingList),
       concatMap(({ item }) =>
         this.http.delete(`/api/reading-list/${item.bookId}`).pipe(
-          map(() => {
-            return ReadingListActions.removeFromReadingListSucceeded({ item })
-          }),
+          map(() =>
+            ReadingListActions.removeFromReadingListSucceeded({ item })
+          ),
           catchError(() =>
             of(ReadingListActions.removeFromReadingListFailed({ item }))
           )
@@ -100,11 +94,8 @@ export class ReadingListEffects implements OnInitEffects {
           id: item.bookId,
           ...rest
         };
-        this._showSnackBar(
-          'Removed from reading list',
-          'Undo',
-          () => this.store.dispatch(ReadingListActions.undoRemoveFromReadingList({ book }))
-        );
+        const action = () => this.store.dispatch(ReadingListActions.undoRemoveFromReadingList({ book }));
+        this._showSnackBar('Removed from reading list', 'Undo', action);
       })
     )
   }, { dispatch: false });
@@ -123,14 +114,14 @@ export class ReadingListEffects implements OnInitEffects {
     )
   );
 
-  ngrxOnInitEffects() {
-    return ReadingListActions.init();
-  }
-
   _showSnackBar = (text: string, actionText: string, action: any, duration?: number) => {
     this.snackBar.open(text, actionText, { duration: duration || 5000 })
       .instance.action = action
   };
+
+  ngrxOnInitEffects() {
+    return ReadingListActions.init();
+  }
 
   constructor(
     private actions$: Actions,

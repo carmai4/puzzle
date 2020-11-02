@@ -14,7 +14,7 @@ import { Book } from '@tmo/shared/models';
 
 export class BookGridItemComponent {
 
-  @Input() book: ReadingListBook;  
+  @Input() book: ReadingListBook;
 
   constructor(
     private readonly store: Store
