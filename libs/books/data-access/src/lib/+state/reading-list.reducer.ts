@@ -53,11 +53,17 @@ const readingListReducer = createReducer(
   on(ReadingListActions.addToReadingListFailed, (state, action) =>
     readingListAdapter.removeOne(action.book.id, state)
   ),
+  on(ReadingListActions.undoAddToReadingList, (state, action) =>
+    readingListAdapter.removeOne(action.item.bookId, state)
+  ),
   on(ReadingListActions.removeFromReadingList, (state, action) =>
     readingListAdapter.removeOne(action.item.bookId, state)
   ),
   on(ReadingListActions.removeFromReadingListFailed, (state, action) =>
     readingListAdapter.addOne({ bookId: action.item.bookId, ...action.item }, state)
+  ),
+  on(ReadingListActions.undoRemoveFromReadingList, (state, action) =>
+    readingListAdapter.addOne({ bookId: action.book.id, ...action.book }, state)
   ),
 );
 
