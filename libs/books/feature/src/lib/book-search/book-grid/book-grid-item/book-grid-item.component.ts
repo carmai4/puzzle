@@ -13,7 +13,10 @@ import { Book } from '@tmo/shared/models';
 export class BookGridItemComponent {
 
   @Input() book: ReadingListBook;
-  constructor(private readonly store: Store) {}
+
+  constructor(
+    private readonly store: Store
+  ) {}
 
   addBookToReadingList(book: Book) {
     this.store.dispatch(addToReadingList({ book }));
