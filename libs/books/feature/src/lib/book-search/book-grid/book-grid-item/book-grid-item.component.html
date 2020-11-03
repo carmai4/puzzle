@@ -15,12 +15,14 @@
     <div>
       <button
         mat-flat-button
+        test-id="add-book"
         color="primary"
         [attr.aria-label]="'Add ' + book.title + ' to reading list'"
         (click)="addBookToReadingList(book)"
         [disabled]="book.isAdded"
+        [ngClass]="{'finished': book.finished}"
       >
-        Want to Read
+        {{ book.finished ? 'Finished' : 'Want to Read'}}
       </button>
     </div>
   </div>

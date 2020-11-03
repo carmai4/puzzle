@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  addToReadingList, ReadingListBook
-} from '@tmo/books/data-access';
+import { addToReadingList, ReadingListBook } from '@tmo/books/data-access';
 import { Book } from '@tmo/shared/models';
 
 @Component({

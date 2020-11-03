@@ -1,23 +1,54 @@
 <ng-container *ngIf="(readingList$ | async).length > 0; else empty">
+  <div class="message">
+    To mark a book as finished, click on the checkbox!
+  </div>
   <div class="reading-list-item" *ngFor="let b of readingList$ | async">
-    <div>
-      <img class="reading-list-item--cover" [src]="b.coverUrl" />
-    </div>
-    <div class="reading-list-item--details">
-      <strong class="reading-list-item--details--title">{{ b.title }}</strong>
-      <div class="reading-list-item--details--author">
-        {{ b.authors.join(',') }}
+    <div class="main" [ngClass]="{'finished-main': b.finished}">
+      <div *ngIf="b.finished" class="finished">
+        <button
+          mat-icon-button
+          color="primary"
+          [attr.aria-label]="'Mark ' + b.title + ' not yet finished'"
+        >
+          <mat-icon>
+            check_box
+          </mat-icon>
+        </button>
+      </div>
+      <div *ngIf="!b.finished" class="not-finished">
+        <button
+          mat-icon-button
+          color="primary"
+          [attr.aria-label]="'Mark ' + b.title + ' finished'"
+          (click)="markBookFinished(b)"
+        >
+          <mat-icon>
+            check_box_outline_blank
+          </mat-icon>
+        </button>
+      </div>
+      <div>
+        <img class="reading-list-item--cover" [src]="b.coverUrl" />
+      </div>
+      <div class="reading-list-item--details" [ngClass]="{'finished-details': b.finished}">
+        <strong class="reading-list-item--details--title">{{ b.title }}</strong>
+        <div class="reading-list-item--details--author">
+          {{ b.authors.join(',') }}
+        </div>
+      </div>
+      <div>
+        <button
+          mat-icon-button
+          color="warn"
+          [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
+          (click)="removeFromReadingList(b)"
+        >
+          <mat-icon>remove_circle</mat-icon>
+        </button>
       </div>
     </div>
-    <div>
-      <button
-        mat-icon-button
-        color="warn"
-        [attr.aria-label]="'Remove ' + b.title + ' from reading list'"
-        (click)="removeFromReadingList(b)"
-      >
-        <mat-icon>remove_circle</mat-icon>
-      </button>
+    <div *ngIf=b.finished class="finished-message">
+      You finished this book on {{ b.finishedDate | date:'yyyy-MM-dd' }}.
     </div>
   </div>
 </ng-container>
