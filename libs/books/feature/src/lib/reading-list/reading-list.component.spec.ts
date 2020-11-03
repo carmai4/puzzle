@@ -67,18 +67,14 @@ describe('ReadingListComponent', () => {
     const items = elem.querySelectorAll('.reading-list-item');
     expect(items.length).toEqual(list.length);
     
-    const finished = elem.querySelectorAll('.reading-list-item .finished button');
+    const finished = elem.querySelectorAll('.reading-list-item .finished-main .finished button');
     expect(finished.length).toEqual(3);
     const finishedItemDetails = elem.querySelectorAll('.reading-list-item .finished-details');
     expect(finishedItemDetails.length).toEqual(3);
-    const finishedDates = elem.querySelectorAll('.reading-list-item span.finished-date');
-    expect(finishedDates.length).toEqual(3);
-    
-    expect(finishedDates[0].textContent.trim()).toEqual('01/01/20');
-    expect(finishedDates[1].textContent.trim()).toEqual('04/15/20');
-    expect(finishedDates[2].textContent.trim()).toEqual('10/15/19');
+    const finishedMessages = elem.querySelectorAll('.reading-list-item .finished-message');
+    expect(finishedMessages.length).toEqual(3);
 
-    const notFinished = elem.querySelectorAll('.reading-list-item .not-finished button');
+    const notFinished = elem.querySelectorAll('.reading-list-item .main .not-finished button');
     expect(notFinished.length).toEqual(1);
   });
 });

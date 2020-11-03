@@ -20,6 +20,7 @@
         [attr.aria-label]="'Add ' + book.title + ' to reading list'"
         (click)="addBookToReadingList(book)"
         [disabled]="book.isAdded"
+        [ngClass]="{'finished': book.finished}"
       >
         {{ book.finished ? 'Finished' : 'Want to Read'}}
       </button>

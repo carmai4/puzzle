@@ -44,17 +44,17 @@ describe('When: I use the reading list feature', () => {
       )
     );
 
-    const markFinishedButton = await $('.not-finished button.mat-icon-button');
+    // mark added book as finished
+    const markFinishedButton = await $$('.not-finished button.mat-icon-button').last();
     await markFinishedButton.click();
 
-    const markedFinished = await $('.finished button.mat-icon-button');
-    expect(markedFinished).toBeTruthy();
+    const markedFinished = await $$('.finished-main .finished button.mat-icon-button');
+    expect(markedFinished.length).toBeGreaterThanOrEqual(1);
 
-    const finishedDate = await $('span.finished-date');
-    expect(finishedDate).toBeTruthy();
+    const finishedMessages = await $$('.finished-message');
+    expect(finishedMessages.length).toBeGreaterThanOrEqual(1);
 
-    await markedFinished.click();
-    const notFinished = await $('.not-finished button.mat-icon-button');
-    expect(notFinished).toBeTruthy();
+    const finishedBookGridItems = await $$('button[test-id="add-book"].finished');
+    expect(finishedBookGridItems.length).toBeGreaterThanOrEqual(1);
   });
 });
