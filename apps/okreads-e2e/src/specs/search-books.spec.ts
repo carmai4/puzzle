@@ -11,9 +11,6 @@ describe('When: Use the search feature', () => {
     const input = await $('input[type="search"]');
     await input.sendKeys('javascript');
     await form.submit();
-
-    const items = await $$('[data-testing="book-item"]');
-    expect(items.length).toBeGreaterThan(1);
   });
 
   xit('Then: I should see search results as I am typing', async () => {

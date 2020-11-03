@@ -58,7 +58,7 @@ export class ReadingListEffects implements OnInitEffects {
     this.actions$.pipe(
       ofType(ReadingListActions.markBookFinished),
       concatMap(({ item }) => 
-        this.http.post(`/api/reading-list/${item.bookId}/finished`, item).pipe(
+        this.http.put(`/api/reading-list/${item.bookId}/finished`, item).pipe(
           map(() => ReadingListActions.markBookFinishedSucceeded({ item })),
           catchError(() =>
             of(ReadingListActions.markBookFinishedFailed({ item }))

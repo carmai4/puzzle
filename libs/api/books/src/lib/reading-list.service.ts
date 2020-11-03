@@ -30,11 +30,14 @@ export class ReadingListService {
   }
 
   async markBookFinished(item: ReadingListItem): Promise<void> {
-    const index = this.storage.read().findIndex(book => book.bookId === item.bookId);
-    this.storage.update(list => {
-      list[index].finished = true;
-      list[index].finishedDate = item.finishedDate;
-      return list;
-    });
+    this.storage.update(list => list.map((b) =>
+      b.bookId === item.bookId ?
+      {
+        ...b,
+        finished: true,
+        finishedDate: item.finishedDate
+      } :
+      b)
+    )
   }
 }

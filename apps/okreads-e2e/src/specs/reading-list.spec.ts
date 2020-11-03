@@ -1,4 +1,4 @@
-import { $, browser, ExpectedConditions } from 'protractor';
+import { $, $$, browser, ExpectedConditions } from 'protractor';
 
 describe('When: I use the reading list feature', () => {
   it('Then: I should see my reading list', async () => {
@@ -23,6 +23,16 @@ describe('When: I use the reading list feature', () => {
     await browser.wait(
       ExpectedConditions.textToBePresentInElement($('tmo-root'), 'okreads')
     );
+
+    // search for 'c++' books
+    const form = await $('form');
+    const input = await $('input[type="search"]');
+    await input.sendKeys('c++');
+    await form.submit();
+
+    // add a book to reading list
+    const addButton = await $$('button[test-id="add-book"][ng-reflect-disabled="false"]').first();
+    await addButton.click();
 
     const readingListToggle = await $('[data-testing="toggle-reading-list"]');
     await readingListToggle.click();

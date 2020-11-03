@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addToReadingList, ReadingListBook, getReadingList } from '@tmo/books/data-access';
+import { addToReadingList, ReadingListBook } from '@tmo/books/data-access';
 import { Book } from '@tmo/shared/models';
 
 @Component({
@@ -10,27 +10,10 @@ import { Book } from '@tmo/shared/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class BookGridItemComponent implements OnInit {
+export class BookGridItemComponent {
 
   @Input() book: ReadingListBook;
-  isFinished: boolean;
-
-  constructor(
-    private readonly store: Store
-  ) {}
-
-  ngOnInit() {
-    this.setIsFinished(this.book);
-  }
-
-  setIsFinished(book) {
-    this.store.select(getReadingList).subscribe(
-      list => {
-        const found = list.find(item => item.bookId === book.id);
-        this.isFinished = found?.finished;
-      }
-    ).unsubscribe();
-  }
+  constructor(private readonly store: Store) {}
 
   addBookToReadingList(book: Book) {
     this.store.dispatch(addToReadingList({ book }));

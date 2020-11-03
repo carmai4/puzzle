@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TotalCountComponent } from './total-count/total-count.component';
@@ -29,7 +28,6 @@ const EXPORTS = [
     MatButtonModule,
     MatBadgeModule,
     MatIconModule,
-    MatTooltipModule,
     MatInputModule,
     MatSnackBarModule,
     FormsModule,

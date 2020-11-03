@@ -4,15 +4,27 @@
   display: block;
   font-size: 0.75rem;
 }
+
 .reading-list {
   padding: $spacing-xxs;
 }
 
-.reading-list-item {
+.message {
+  padding: $spacing-xs;
+  text-align: center;
+  color: $pink-accent;
+  font-size: $spacing-xs;
+}
+
+.reading-list-item .main {
   display: flex;
   justify-content: center;
   margin-bottom: $spacing-xs;
   width: 100%;
+  
+  &.finished-main {
+    margin-bottom: 0;
+  }
 
   > * {
     display: flex;
@@ -27,6 +39,7 @@
 
 .finished,.not-finished {
   margin-right: $spacing-xxs;
+  width: 10%;
 }
 
 .reading-list-item--cover {
@@ -42,6 +55,7 @@
 
   &.finished-details {
     color: $gray40;
+    min-width: 30%;
   }
 }
 
@@ -50,6 +64,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.reading-list-item .finished-message {
+  font-style: italic;
+  width: 100%;
+  margin-bottom: $spacing-xs;
+  color: $pink-accent;
 }
 
 .empty {
